@@ -3,7 +3,7 @@ const linkSocialMedia = {
   youtube: 'channel/UCTYAROH_zl5JF9UNEtHtFrg',
   facebook: 'thiago.billy.100',
   instagram: 'thiagobilly27',
-  twitter: 'thiagobilly'
+  linkedin: 'in/thiago-billy-367940213/'
 }
 
 function changeSocialMedia() {
