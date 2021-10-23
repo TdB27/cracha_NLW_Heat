@@ -8,6 +8,7 @@ body {
   --grey: hsl(240, 9%, 89%);
 
   height: 100%;
+  background-color: #121214;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -18,9 +19,10 @@ body {
 }
 
 main {
-  background: url(images/background.svg);
-  width: 375px;
-  height: 812px;
+  background: url(images/background.svg) no-repeat center;
+  width: 100vw;
+  max-height: 812px;
+  height: 100vh;
 }
 
 .container {
@@ -32,6 +34,10 @@ main {
   color: var(--grey);
 }
 
+.strip {
+  display: none;
+}
+
 .avatar {
   width: 10rem;
   margin: 11.5rem auto 0;
@@ -39,10 +45,25 @@ main {
   position: relative;
 }
 
+@keyframes rotate-avatar {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
 .avatar span {
   position: absolute;
   top: -15px;
   z-index: 1;
+  animation: 30s rotate-avatar alternate infinite;
 }
 
 .avatar > img {
@@ -72,6 +93,14 @@ a {
   align-items: center;
 }
 
+a > img {
+  transition: 0.6s;
+}
+
+a > img:hover {
+  transform: rotate(360deg);
+}
+
 p {
   margin-top: 2rem;
 }
@@ -86,4 +115,80 @@ ul {
   gap: 0.5rem;
 
   justify-content: center;
+}
+
+@keyframes enlarge {
+  0% {
+    border-radius: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    border-radius: 50%;
+    transform: scale(1.2);
+  }
+}
+
+li img {
+  border-radius: 50%;
+  transform: scale(1);
+  transition: 0.4s;
+}
+
+li img:hover {
+  transform: scale(1.2);
+  /* animation: 1s enlarge ease-in-out infinite; */
+}
+
+/* breakpoints to desktop */
+@media screen and (min-width: 996px) {
+  body {
+    background: url(images/background-desktop.svg) no-repeat center top;
+  }
+
+  @keyframes balance {
+    from {
+      transform: rotate(-1deg);
+    }
+    to {
+      transform: rotate(1deg);
+    }
+  }
+
+  main {
+    background-position: center -111px;
+    width: 358px;
+    height: 560px;
+    margin-top: 120px;
+    /* animation: 3s 0.3s ease-in-out balance infinite alternate; */
+  }
+
+  .strip {
+    display: block;
+    width: 80px;
+    height: 164px;
+    margin: -135px auto 0;
+    background: url(./images/teste.svg);
+    position: relative;
+  }
+
+  .strip::before {
+    content: '';
+    width: 64px;
+    height: 100vh;
+    background-color: #ff3b6e;
+    position: absolute;
+    bottom: 98%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .avatar {
+    margin-top: 3.3rem;
+  }
+
+  ul {
+    margin-top: 2rem;
+  }
 }
